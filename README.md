@@ -1,0 +1,1 @@
+Ref https://towardsdatascience.com/how-to-synchronize-elasticsearch-with-mysql-ed32fc57b339
