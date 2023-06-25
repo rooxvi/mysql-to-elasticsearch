@@ -1,0 +1,21 @@
+sequenceDiagram
+    participant Rdp Gateway
+    participant RabbitMQ
+    participant Rdp video conversion
+    participant S3
+    participant Saviynt DB
+    autonumber
+    Rdp Gateway->>RabbitMQ: Session close 
+    RabbitMQ->>Rdp video conversion: Read message
+    activate Rdp video conversion
+    par Merge session guacamole protocol files.
+    and Convert merged file to m4v format. 
+    and Guacenc converting mv4 file to mp4
+        note right of Rdp video conversion: Guacenc 1.5.1
+    end
+    Rdp video conversion->>S3: Upload mp4 file
+    deactivate Rdp video conversion
+   
+    Rdp video conversion->>Saviynt DB: Update metadata
+   
+  
